@@ -1,0 +1,14 @@
+{
+  "name": "fpb",
+  "version": "1.0.0",
+  "description": "functional lib for function program support",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "yangbo",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^2.6.0"
+  }
+}

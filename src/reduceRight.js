@@ -1,5 +1,5 @@
 
-const createReduce = require('./createReduce')
+const createReduce = require('./_createReduce')
 const getLength = require('./getLength')
 let undefined
 /**

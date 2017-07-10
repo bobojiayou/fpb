@@ -1,4 +1,4 @@
-const getBaseType = require('./getBaseType')
+const getBaseType = require('./_getBaseType')
 /**
  * 
  * @param {Object} obj 

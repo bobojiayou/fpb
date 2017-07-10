@@ -19,7 +19,7 @@ const createReduce = (...args) => {
         _args = [iteratee]
 
     } else {
-        [iteratee, initValue, dir] = args
+        [iteratee, initValue, arr, dir] = args
         _args = [iteratee, initValue]
     }
     return dir === 1 ? arr.reduce(..._args) : arr.reduceRight(..._args)

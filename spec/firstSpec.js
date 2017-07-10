@@ -1,4 +1,4 @@
-const first = require('../src/first')
+const first = require('../dist/fpb').first
 
 describe('identity function test', function () {
     it('should always return the arguments which supplied to it ', function () {

@@ -1,6 +1,6 @@
 
-const initial = require('./initial')
-const reduceRight = require('./reduceRight')
+const initial = require('./initial'),
+    reduceRight = require('./reduceRight')
 /**
  * 
  * @param {Function} fns 

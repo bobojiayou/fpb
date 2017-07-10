@@ -1,4 +1,4 @@
-const values = require('../src/values')
+const values = require('../dist/fpb').values
 
 describe('tool function test', function () {
 

@@ -1,4 +1,4 @@
-const sum = require('../src/sum')
+const sum = require('../dist/fpb').sum
 
 describe('tool function test', function () {
     let arr = [1, 2, 3, 4, 5], arr1 = [10, 23]

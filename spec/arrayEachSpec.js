@@ -1,4 +1,4 @@
-const arrayEach = require('../src/arrayEach')
+const arrayEach = require('../dist/fpb').arrayEach
 
 describe('arrayEach function test', function () {
     let arr = [1, 2, 3, 4, 5]

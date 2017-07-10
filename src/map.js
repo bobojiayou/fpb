@@ -1,8 +1,8 @@
-const isObject = require('./isObject')
-const isFunction = require('./isFunction')
-const isArray = require('./isArray')
-const objectMap = require('./objectMap')
-const arrayMap = require('./arrayMap')
+const isObject = require('./isObject'),
+    isFunction = require('./isFunction'),
+    isArray = require('./isArray'),
+    objectMap = require('./objectMap'),
+    arrayMap = require('./arrayMap')
 
 
 const map = (iteratee, value) => {

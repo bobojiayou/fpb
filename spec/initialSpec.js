@@ -1,5 +1,5 @@
 
-const initial = require('../src/initial')
+const initial = require('../dist/fpb').initial
 
 describe('tool function test', function () {
     let arr = [1, 2, 3, 4, 5], str = 'yangbo'

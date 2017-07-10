@@ -1,8 +1,8 @@
-const isObject = require('./isObject')
-const isFunction = require('./isFunction')
-const arrayEach = require('./arrayEach')
-const ownKeys = require('./ownKeys')
-const getLength = require('./getLength')
+const isObject = require('./isObject'),
+    isFunction = require('./isFunction'),
+    arrayEach = require('./arrayEach'),
+    ownKeys = require('./ownKeys'),
+    getLength = require('./getLength')
 
 const objectMap = (iteratee, value) => {
     if (!isObject(value) || isFunction(value)) return value

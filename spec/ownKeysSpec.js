@@ -1,4 +1,4 @@
-const ownKeys = require('../src/ownKeys')
+const ownKeys = require('../dist/fpb').ownKeys
 
 describe('ownkeys function test', function () {
     let obj = {
@@ -8,5 +8,8 @@ describe('ownkeys function test', function () {
     }
     it('should return all own keys of the given object', function () {
         expect(ownKeys(obj)).toEqual(['a', 'b', 'c'])
+        
+        expect(ownKeys()(obj)).toEqual(['a', 'b', 'c'])
+        
     })
 })

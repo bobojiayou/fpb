@@ -1,12 +1,11 @@
+const fpb = require('../dist/fpb')
 
-const compose = require('../src/compose')
-const filter = require('../src/filter')
-const initial = require('../src/initial')
-const sum = require('../src/sum')
-const every = require('../src/every')
-const curry = require('../src/curry')
-const values = require('../src/values')
-const add = require('../src/add')
+const every = fpb.every,
+    values = fpb.values,
+    add = fpb.add,
+    filter = fpb.filter,
+    compose = fpb.compose,
+    sum = fpb.sum
 
 describe('compose function test', function () {
     it('should compose right ', function () {
@@ -16,16 +15,16 @@ describe('compose function test', function () {
             c: 3,
             d: 4
         }
-        let filterBigThan2 = curry(filter)(x => x > 2)
-        let add10 = curry(add)(10)
+        let filterBigThan2 = filter(x => x > 2)
+        let add10 = add(10)
 
         let composeFn = compose(add10, sum, filterBigThan2, values)
 
-        expect(values(obj)).toEqual([1,2,3,4])
+        expect(values(obj)).toEqual([1, 2, 3, 4])
         expect(filterBigThan2(values(obj))).toEqual([3, 4])
         expect(sum(filterBigThan2(obj))).toEqual(7)
         expect(add10(7)).toEqual(17)
-        
+
         expect(composeFn(obj)).toEqual(17)
     })
 })

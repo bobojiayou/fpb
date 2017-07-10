@@ -1,19 +1,21 @@
-const isArray = require('../src/isArray')
-const isBoolean = require('../src/isBoolean')
-const isDate = require('../src/isDate')
-const isFinite = require('../src/isFinite')
-const isNaN = require('../src/isNaN')
-const isNull = require('../src/isNull')
-const isNumber = require('../src/isNumber')
-const isString = require('../src/isString')
-const isUndefined = require('../src/isUndefined')
-const isFunction = require('../src/isFunction')
-const isRegExp = require('../src/isRegExp')
-const isError = require('../src/isError')
-const isArguments = require('../src/isArguments')
-const isLength = require('../src/isLength')
-const isArrayLike = require('../src/isArrayLike')
-const isEmpty = require('../src/isEmpty')
+const fpb = require('../dist/fpb')
+
+const isArray = fpb.isArray,
+    isBoolean = fpb.isBoolean,
+    isDate = fpb.isDate,
+    isFinite = fpb.isFinite,
+    isNaN = fpb.isNaN,
+    isNull = fpb.isNull,
+    isNumber = fpb.isNumber,
+    isString = fpb.isString,
+    isUndefined = fpb.isUndefined,
+    isFunction = fpb.isFunction,
+    isRegExp = fpb.isRegExp,
+    isError = fpb.isError,
+    isArguments = fpb.isArguments,
+    isLength = fpb.isLength,
+    isArrayLike = fpb.isArrayLike,
+    isEmpty = fpb.isEmpty
 
 describe('typeDec function test', function () {
     var _arr = [1, 2, 3],

@@ -1,7 +1,7 @@
 
-const getLength = require('./getLength')
-const isArray = require('./isArray')
-const last = require('./last')
+const getLength = require('./getLength'),
+    isArray = require('./isArray'),
+    last = require('./last')
 
 /**
  * 
@@ -14,7 +14,7 @@ const createReduce = (...args) => {
     let len = getLength(args)
     if (len < 3) throw new Error('Invalid args')
     let arr, iteratee, initValue, _args
-    if(len === 3) {
+    if (len === 3) {
         [iteratee, arr, dir] = args
         _args = [iteratee]
 

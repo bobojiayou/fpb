@@ -1,4 +1,4 @@
-const allKeys = require('../src/allKeys')
+const allKeys = require('../dist/fpb').allKeys
 
 describe('tool function test', function () {
     let obj = function() {

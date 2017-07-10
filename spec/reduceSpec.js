@@ -1,12 +1,13 @@
-const reduce = require('../src/reduce')
-const reduceRight = require('../src/reduceRight')
+const fpb = require('../dist/fpb')
+const reduce = fpb.reduce,
+    reduceRight = fpb.reduceRight
 
 describe('reduce function test', function () {
     let arr = [1, 2, 3, 4]
     it('should reduce right', function () {
         expect(reduceRight((prev, value) => prev - value, arr)).toEqual(-2)
         expect(reduceRight((prev, value) => prev + value, arr)).toEqual(10)
-        
+
     })
 })
 

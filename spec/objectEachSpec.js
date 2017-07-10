@@ -1,4 +1,4 @@
-const objectEach = require('../src/objectEach')
+const objectEach = require('../dist/fpb').objectEach
 
 describe('objectEach function test', function () {
     let arr = {
@@ -7,5 +7,7 @@ describe('objectEach function test', function () {
     }
     it('should run the iteratee on every elemnt in the given array', function () {
         expect(objectEach((item, key) => { console.log(item + '' + key) }, arr)).toEqual(arr)
+        expect(objectEach((item, key) => { console.log(item + '' + key) })(arr)).toEqual(arr)
+        
     })
 })

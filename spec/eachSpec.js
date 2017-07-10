@@ -1,4 +1,4 @@
-const each = require('../src/each')
+const each = require('../dist/fpb').each
 
 describe('each function test', function () {
     let arr = [1, 2, 3, 4, 5],
@@ -13,5 +13,6 @@ describe('each function test', function () {
         expect(each((item, index, obj) => { console.log(item, index, obj) }, obj)).toEqual(obj)
         expect(each((item, index) => { console.log(item, index) }, obj)).toEqual(obj)
         
+        expect(each((item, index) => { console.log(item, index) })(obj)).toEqual(obj)        
     })
 })

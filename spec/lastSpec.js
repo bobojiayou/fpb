@@ -1,4 +1,4 @@
-const last = require('../src/last')
+const last = require('../dist/fpb').last
 
 describe('identity function test', function () {
     it('should always return the arguments which supplied to it ', function () {

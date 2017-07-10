@@ -1,5 +1,6 @@
 
-const identity = require('../src/identity') 
+const identity = require('../dist/fpb').identity
+ 
 describe('identity function test', function () {
     it('should always return the arguments which supplied to it ', function(){
         expect(identity(1)).toEqual(1)

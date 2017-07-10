@@ -1,7 +1,6 @@
 
-const createReduce = require('./_createReduce')
-const getLength = require('./getLength')
-let undefined
+const createReduce = require('./_createReduce'),
+    getLength = require('./getLength')
 
 /**
  * 

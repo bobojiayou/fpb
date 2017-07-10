@@ -1,5 +1,5 @@
-const isArrayLike = require('./isArrayLike')
-const getLength = require('./getLength')
+const isArrayLike = require('./isArrayLike'),
+    getLength = require('./getLength')
 
 const last = value => {
     if (!isArrayLike(value)) return void 0

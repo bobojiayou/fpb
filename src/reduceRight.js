@@ -1,13 +1,13 @@
 
-const createReduce = require('./_createReduce')
-const getLength = require('./getLength')
-let undefined
+const createReduce = require('./_createReduce'),
+    getLength = require('./getLength')
+
 /**
- * 
- * @param {Function} iteratee 
- * @param {*} initValue 
- * @param {Array} list 
- */
+* 
+* @param {Function} iteratee 
+* @param {*} initValue 
+* @param {Array} list 
+*/
 const reduceRight = (...args) => {
     let _args = [...args, -1]
     return createReduce(..._args)

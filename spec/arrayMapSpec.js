@@ -1,4 +1,4 @@
-const arrayMap = require('../src/arrayMap')
+const arrayMap = require('../dist/fpb').arrayMap
 
 describe('arrayMap function test', function () {
     let arr = [1, 2, 3, 4, 5]

@@ -1,4 +1,5 @@
-# fpb
+# fpb[![npm version](https://badge.fury.io/js/fpb.svg)](https://badge.fury.io/js/fpb)
+
 > fpb.js is a JavaScript library providing functions for your Functional programming
 
 ## Getting Started

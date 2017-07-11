@@ -18,8 +18,8 @@ e.g
    fpb.filter(x=> x<3, [2,3,4])  //==> [2]
    fpb.map(x=> x*2, [2,3,4])  //==> [4, 6, 8]
 ```
--  2、everything is auto curried
- fpb.js providing A lot of functions, and Most of them are auto curried , except 'chain', 'reduce', 'reduceRight', 'curry'
+### -  2、Everything is auto curried
+>  fpb.js providing A lot of functions, and Most of them are auto curried , except 'chain', 'reduce', 'reduceRight', 'curry'
 
 e.g   
 ```

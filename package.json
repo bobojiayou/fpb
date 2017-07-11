@@ -1,11 +1,16 @@
 {
   "name": "fpb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "functional lib for function program support",
   "main": "./dist/fpb.js",
   "scripts": {
     "test": "jasmine",
     "build": "webpack --config webpack.config.js"
+  },
+  "homepage": "https://github.com/bobojiayou/fpb",
+  "bugs": {
+    "url": "https://github.com/bobojiayou/fpb/issues",
+    "email": "hzyangbo15@corp.netease.com"
   },
   "author": "yangbo",
   "license": "ISC",
@@ -15,6 +20,11 @@
     "babel-loader": "^7.1.1",
     "babel-runtime": "^6.23.0",
     "jasmine": "^2.6.0",
-    "webpack": "^3.1.0"
+    "webpack": "^3.1.0",
+    "sync-exec": "@last"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bobojiayou/fpb"
   }
 }

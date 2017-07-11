@@ -1,5 +1,6 @@
 # fpb
 [![npm version](https://badge.fury.io/js/fpb.svg)](https://badge.fury.io/js/fpb)
+[![Shippable](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg?style=flat-square)](https://github.com/bobojiayou/fpb)
 [![Codecov private](https://img.shields.io/codecov/c/github/codecov/example-python.svg?style=flat-square)](https://github.com/bobojiayou/fpb)
 > fpb.js is a JavaScript library providing functions for your Functional programming
 

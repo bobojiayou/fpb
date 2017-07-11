@@ -3,15 +3,15 @@
 
 ## Getting Started
 ## install
- Install via npm
+>  Install via npm
 
 ```
 npm install fpb
 ```
 
 ## Use && Feature
--  1、function first 
-    funtion is the first argument 
+### -  1、Function first 
+>     funtion is the first argument 
     
 e.g    
 ```
@@ -34,10 +34,9 @@ e.g
    addN()(1)(2)()(3) //==> 6
    addN(1, 2)(3) // ==> 6
 ```
--  3、compose
- you can compose funtions easily. see a huge example
+### -  3、compose
+>  you can compose funtions easily. see a huge example
 -  
-
 e.g   
 ```
  const every = fpb.every,
@@ -45,6 +44,8 @@ e.g
     add = fpb.add,
     filter = fpb.filter,
     compose = fpb.compose,
+    let filterBigThan2 = filter(x => x > 2)
+    let add10 = add(10)
     sum = fpb.sum
         let obj = {
             a: 1,
@@ -55,8 +56,8 @@ e.g
   let composeFn = compose(add10, sum, filterBigThan2, values)
   composeFn(obj) //==> 17
 ```
--  4、chainAble (lazy chain)
-the functions in fpb.js also support chain calls, you can also code in OOP style if you like 
+### -  4、chainAble (lazy chain)
+> the functions in fpb.js also support chain calls, you can also code in OOP style if you like，and all the functions is lazy call, they would not execute until the force functions executed
 e.g   
 ```
  const stooges1 = [{ name: 'curly', age: 25 }, { name: 'moe', age: 21 }, { name: 'larry', age: 23 }];
@@ -69,4 +70,3 @@ e.g
 
 
 ## License
-

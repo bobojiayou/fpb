@@ -5,7 +5,6 @@ const fpb = module.exports = function (value) {
     this._target = value
 }
 
-
 fpb.prototype.value = function () {
     return this._target
 }
@@ -113,5 +112,5 @@ fpb.each(function (name) {
     }
 }, fpb.functions(fpb))
 
-fpb.VERSION = '1.0.0';
+fpb.VERSION = '1.1.0';
 

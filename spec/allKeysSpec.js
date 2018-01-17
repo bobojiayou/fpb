@@ -10,10 +10,11 @@ describe('tool function test', function () {
 
     let test2 = {
         a: 1, 
-        b: 2
+        b: 2,
+        c: 34
     }
     it('should return the length of the given variable', function () {
         expect(allKeys(objInstance)).toEqual(['yangbo', 'test'])
-        expect(allKeys(test2)).toEqual(['a', 'b'])
+        expect(allKeys(test2)).toEqual(['a', 'b', 'c'])
     })
 })

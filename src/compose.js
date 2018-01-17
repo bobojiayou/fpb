@@ -1,6 +1,7 @@
 
 const initial = require('./initial'),
     reduceRight = require('./reduceRight')
+    
 /**
  * 
  * @param {Function} fns 

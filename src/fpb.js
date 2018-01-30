@@ -112,5 +112,5 @@ fpb.each(function (name) {
     }
 }, fpb.functions(fpb))
 
-fpb.VERSION = '1.1.1';
+fpb.VERSION = '1.1.3';
 

@@ -7,7 +7,7 @@
 		exports["fpb"] = factory();
 	else
 		root["fpb"] = factory();
-})(this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -154,7 +154,6 @@ const arrayEach = (iteratee, value) => {
     value.forEach(iteratee);
     return value;
 };
-let arr = [1, 2, 3, 4, 5];
 
 module.exports = arrayEach;
 
@@ -591,7 +590,7 @@ fpb.each(function (name) {
     }
 }, fpb.functions(fpb));
 
-fpb.VERSION = '1.0.0';
+fpb.VERSION = '1.1.2';
 
 /***/ }),
 /* 24 */
@@ -603,6 +602,7 @@ fpb.VERSION = '1.0.0';
  * @param {String or Number} value1 
  * @param {String or Number} value2
  */
+
 const add = (value1, value2) => {
   return value1 + value2;
 };
@@ -616,7 +616,7 @@ module.exports = add;
 const isObject = __webpack_require__(2);
 
 const allKeys = value => {
-    if (!isObject) return [];
+    if (!isObject(value)) return [];
     let keys = [];
     for (var key in value) keys.push(key);
     return keys;
@@ -631,6 +631,7 @@ module.exports = allKeys;
 
 const initial = __webpack_require__(10),
       reduceRight = __webpack_require__(11);
+
 /**
  * 
  * @param {Function} fns 
@@ -653,7 +654,7 @@ module.exports = compose;
 
 const curry = func => {
     return function inner(..._args1) {
-        len = func.length;
+        let len = func.length;
         if (_args1.length === len) {
             return func.apply(null, _args1);
         } else if (_args1.length > len) {
@@ -777,7 +778,6 @@ module.exports = isDate;
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 const isArray = __webpack_require__(0),
       isString = __webpack_require__(20),
       isArguments = __webpack_require__(19),
@@ -790,7 +790,7 @@ const isArray = __webpack_require__(0),
  * @param {Object} value 
  */
 const isEmpty = value => {
-    if (value == null) return true;
+    if (value == null || value === undefined) return true;
     if (isArrayLike(value) && (isArray(value) || isString(value) || isArguments(value))) return value.length === 0;
     if (isNumber(value)) return false;
     return ownKeys(value).length === 0;

@@ -6,8 +6,9 @@ describe('tool function test', function () {
         let obj = {
             a: 1,
             b: 2,
-            c: 3
+            c: 3,
+            d: 4
         }
-        expect(values(obj)).toEqual([1, 2, 3])
+        expect(values(obj)).toEqual([1, 2, 3, 4])
     })
 })

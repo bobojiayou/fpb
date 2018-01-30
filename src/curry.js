@@ -6,7 +6,7 @@
 
 const curry = func => {
     return function inner(..._args1) {
-        len = func.length
+        let len = func.length
         if (_args1.length === len) {
             return func.apply(null, _args1)
         } else if (_args1.length > len) {

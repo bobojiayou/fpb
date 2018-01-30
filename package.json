@@ -1,6 +1,6 @@
 {
   "name": "fpb",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "functional lib for function program support",
   "main": "./dist/fpb.js",
   "scripts": {

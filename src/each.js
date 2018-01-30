@@ -5,7 +5,7 @@ const isObject = require('./isObject'),
     arrayEach = require('./arrayEach')
 
 /**
- * 
+ *  
  * @param {Function} iteratee 
  * @param {Object} value 
  */

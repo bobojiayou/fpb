@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -90,20 +90,6 @@ module.exports = isArray;
 /* 1 */
 /***/ (function(module, exports) {
 
-const ObjProto = Object.prototype;
-const toString = ObjProto.toString;
-/**
- * 
- * @param {String} The type name 
- */
-const getBaseType = name => obj => toString.call(obj) === '[object ' + name + ']';
-
-module.exports = getBaseType;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
 
 /**
  * 
@@ -117,10 +103,37 @@ const isObject = value => {
 module.exports = isObject;
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getProperty = __webpack_require__(13);
+const getBaseType = __webpack_require__(3);
+/**
+ * 
+ * @param {Object} obj 
+ */
+const isFunction = value => getBaseType('Function')(value);
+
+module.exports = isFunction;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+const ObjProto = Object.prototype;
+const toString = ObjProto.toString;
+/**
+ * 
+ * @param {String} The type name 
+ */
+const getBaseType = name => obj => toString.call(obj) === '[object ' + name + ']';
+
+module.exports = getBaseType;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const getProperty = __webpack_require__(8);
 
 /**
  * 
@@ -131,38 +144,11 @@ const getLength = value => getProperty('length')(value);
 module.exports = getLength;
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const getBaseType = __webpack_require__(1);
-/**
- * 
- * @param {Object} obj 
- */
-const isFunction = value => getBaseType('Function')(value);
-
-module.exports = isFunction;
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArray = __webpack_require__(0);
-
-const arrayEach = (iteratee, value) => {
-    if (!isArray(value)) return value;
-    value.forEach(iteratee);
-    return value;
-};
-
-module.exports = arrayEach;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const isLength = __webpack_require__(15),
-      isFunction = __webpack_require__(4);
+const isLength = __webpack_require__(17),
+      isFunction = __webpack_require__(2);
 
 /**
  * 
@@ -175,7 +161,7 @@ const isArrayLike = value => {
 module.exports = isArrayLike;
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 
@@ -189,10 +175,52 @@ const ownKeys = obj => Reflect.ownKeys(obj);
 module.exports = ownKeys;
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(1);
+const isArray = __webpack_require__(0);
+
+const arrayEach = (iteratee, value) => {
+    if (!isArray(value)) return value;
+    value.forEach(iteratee);
+    return value;
+};
+
+module.exports = arrayEach;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+
+/**
+ * 
+ * @param {*} key 
+ */
+
+const getProperty = key => value => value == null ? void 0 : value[key];
+
+module.exports = getProperty;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const getBaseType = __webpack_require__(3);
+
+/**
+ * 
+ * @param {Object} obj 
+ */
+const isString = value => getBaseType('String')(value);
+
+module.exports = isString;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const getBaseType = __webpack_require__(3);
 
 /**
  * 
@@ -203,7 +231,24 @@ const isNumber = value => getBaseType('Number')(value);
 module.exports = isNumber;
 
 /***/ }),
-/* 9 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const isObject = __webpack_require__(1),
+      isFunction = __webpack_require__(2),
+      isArray = __webpack_require__(0),
+      objectMap = __webpack_require__(23),
+      arrayMap = __webpack_require__(12);
+
+const map = (iteratee, value) => {
+    if (isObject(value) && isFunction(value)) throw new Error('Invalid data for map!');
+    return isArray(value) ? arrayMap(iteratee, value) : objectMap(iteratee, value);
+};
+
+module.exports = map;
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isArray = __webpack_require__(0);
@@ -221,7 +266,7 @@ const arrayMap = (iteratee, value) => {
 module.exports = arrayMap;
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports) {
 
 
@@ -237,12 +282,12 @@ const initial = array => {
 module.exports = initial;
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-const createReduce = __webpack_require__(12),
-      getLength = __webpack_require__(3);
+const createReduce = __webpack_require__(15),
+      getLength = __webpack_require__(4);
 
 /**
 * 
@@ -259,13 +304,13 @@ const reduceRight = (...args) => {
 module.exports = reduceRight;
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-const getLength = __webpack_require__(3),
+const getLength = __webpack_require__(4),
       isArray = __webpack_require__(0),
-      last = __webpack_require__(14);
+      last = __webpack_require__(16);
 
 /**
  * 
@@ -291,25 +336,11 @@ const createReduce = (...args) => {
 module.exports = createReduce;
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-
-/**
- * 
- * @param {*} key 
- */
-
-const getProperty = key => value => value == null ? void 0 : value[key];
-
-module.exports = getProperty;
-
-/***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArrayLike = __webpack_require__(6),
-      getLength = __webpack_require__(3);
+const isArrayLike = __webpack_require__(5),
+      getLength = __webpack_require__(4);
 
 const last = value => {
     if (!isArrayLike(value)) return void 0;
@@ -319,7 +350,7 @@ const last = value => {
 module.exports = last;
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports) {
 
 var MAX_SAFE_INTEGER = 9007199254740991;
@@ -335,17 +366,17 @@ const isLength = value => {
 module.exports = isLength;
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(4),
+const isObject = __webpack_require__(1),
+      isFunction = __webpack_require__(2),
       isArray = __webpack_require__(0),
-      objectEach = __webpack_require__(17),
-      arrayEach = __webpack_require__(5);
+      objectEach = __webpack_require__(19),
+      arrayEach = __webpack_require__(7);
 
 /**
- * 
+ *  
  * @param {Function} iteratee 
  * @param {Object} value 
  */
@@ -357,14 +388,14 @@ const each = (iteratee, value) => {
 module.exports = each;
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(4),
-      arrayEach = __webpack_require__(5),
-      ownKeys = __webpack_require__(7),
-      getLength = __webpack_require__(3);
+const isObject = __webpack_require__(1),
+      isFunction = __webpack_require__(2),
+      arrayEach = __webpack_require__(7),
+      ownKeys = __webpack_require__(6),
+      getLength = __webpack_require__(4);
 
 const objectEach = (iteratee, value) => {
     if (!isObject(value) || isFunction(value)) return value;
@@ -380,7 +411,7 @@ const objectEach = (iteratee, value) => {
 module.exports = objectEach;
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports) {
 
 
@@ -397,10 +428,23 @@ const has = (key, value) => {
 module.exports = has;
 
 /***/ }),
-/* 19 */
+/* 21 */
+/***/ (function(module, exports) {
+
+
+/**
+ * 
+ * @param {*} value
+ */
+const identity = value => value;
+
+module.exports = identity;
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(1);
+const getBaseType = __webpack_require__(3);
 
 /**
  * 
@@ -411,28 +455,14 @@ const isArguments = value => getBaseType('Arguments')(value);
 module.exports = isArguments;
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(1);
-
-/**
- * 
- * @param {Object} obj 
- */
-const isString = value => getBaseType('String')(value);
-
-module.exports = isString;
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(4),
-      arrayEach = __webpack_require__(5),
-      ownKeys = __webpack_require__(7),
-      getLength = __webpack_require__(3);
+const isObject = __webpack_require__(1),
+      isFunction = __webpack_require__(2),
+      arrayEach = __webpack_require__(7),
+      ownKeys = __webpack_require__(6),
+      getLength = __webpack_require__(4);
 
 const objectMap = (iteratee, value) => {
     if (!isObject(value) || isFunction(value)) return value;
@@ -449,12 +479,12 @@ const objectMap = (iteratee, value) => {
 module.exports = objectMap;
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-const createReduce = __webpack_require__(12),
-      getLength = __webpack_require__(3);
+const createReduce = __webpack_require__(15),
+      getLength = __webpack_require__(4);
 
 /**
  * 
@@ -472,7 +502,23 @@ const reduce = (...args) => {
 module.exports = reduce;
 
 /***/ }),
-/* 23 */
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const map = __webpack_require__(11),
+      getProperty = __webpack_require__(8);
+
+/**
+ * 
+ * @param {string} key 
+ * @param {list} obj 
+ */
+const pluck = (key, obj) => map(getProperty(key), obj);
+
+module.exports = pluck;
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -499,48 +545,51 @@ fpb.chain = (value, notLazy) => {
     return instance;
 };
 
-fpb.add = __webpack_require__(24);
-fpb.allKeys = __webpack_require__(25);
-fpb.arrayEach = __webpack_require__(5);
-fpb.arrayMap = __webpack_require__(9);
-fpb.compose = __webpack_require__(26);
-fpb.curry = __webpack_require__(27);
-fpb.each = __webpack_require__(16);
-fpb.every = __webpack_require__(28);
-fpb.filter = __webpack_require__(29);
-fpb.first = __webpack_require__(30);
-fpb.getLength = __webpack_require__(3);
-fpb.getProperty = __webpack_require__(13);
-fpb.has = __webpack_require__(18);
-fpb.identity = __webpack_require__(31);
-fpb.initial = __webpack_require__(10);
-fpb.isArguments = __webpack_require__(19);
+fpb.add = __webpack_require__(27);
+fpb.allKeys = __webpack_require__(28);
+fpb.arrayEach = __webpack_require__(7);
+fpb.arrayMap = __webpack_require__(12);
+fpb.compose = __webpack_require__(29);
+fpb.curry = __webpack_require__(30);
+fpb.each = __webpack_require__(18);
+fpb.every = __webpack_require__(31);
+fpb.filter = __webpack_require__(32);
+fpb.first = __webpack_require__(33);
+fpb.getLength = __webpack_require__(4);
+fpb.getProperty = __webpack_require__(8);
+fpb.has = __webpack_require__(20);
+fpb.identity = __webpack_require__(21);
+fpb.initial = __webpack_require__(13);
+fpb.isArguments = __webpack_require__(22);
 fpb.isArray = __webpack_require__(0);
-fpb.isArrayLike = __webpack_require__(6);
-fpb.isBoolean = __webpack_require__(32);
-fpb.isDate = __webpack_require__(33);
-fpb.isEmpty = __webpack_require__(34);
-fpb.isError = __webpack_require__(35);
-fpb.isFinite = __webpack_require__(36);
-fpb.isFunction = __webpack_require__(4);
-fpb.isLength = __webpack_require__(15);
-fpb.isNaN = __webpack_require__(37);
-fpb.isNull = __webpack_require__(38);
-fpb.isNumber = __webpack_require__(8);
-fpb.isObject = __webpack_require__(2);
-fpb.isRegExp = __webpack_require__(39);
-fpb.isString = __webpack_require__(20);
-fpb.isUndefined = __webpack_require__(40);
-fpb.last = __webpack_require__(14);
-fpb.map = __webpack_require__(41);
-fpb.objectEach = __webpack_require__(17);
-fpb.objectMap = __webpack_require__(21);
-fpb.ownKeys = __webpack_require__(7);
-fpb.reduce = __webpack_require__(22);
-fpb.reduceRight = __webpack_require__(11);
-fpb.rest = __webpack_require__(42);
-fpb.sum = __webpack_require__(43);
-fpb.values = __webpack_require__(44);
+fpb.isArrayLike = __webpack_require__(5);
+fpb.isBoolean = __webpack_require__(34);
+fpb.isDate = __webpack_require__(35);
+fpb.isEmpty = __webpack_require__(36);
+fpb.isError = __webpack_require__(37);
+fpb.isFinite = __webpack_require__(38);
+fpb.isFunction = __webpack_require__(2);
+fpb.isLength = __webpack_require__(17);
+fpb.isNaN = __webpack_require__(39);
+fpb.isNull = __webpack_require__(40);
+fpb.isNumber = __webpack_require__(10);
+fpb.isObject = __webpack_require__(1);
+fpb.isRegExp = __webpack_require__(41);
+fpb.isString = __webpack_require__(9);
+fpb.isUndefined = __webpack_require__(42);
+fpb.last = __webpack_require__(16);
+fpb.map = __webpack_require__(11);
+fpb.objectEach = __webpack_require__(19);
+fpb.objectMap = __webpack_require__(23);
+fpb.ownKeys = __webpack_require__(6);
+fpb.reduce = __webpack_require__(24);
+fpb.reduceRight = __webpack_require__(14);
+fpb.rest = __webpack_require__(43);
+fpb.sum = __webpack_require__(44);
+fpb.values = __webpack_require__(45);
+fpb.some = __webpack_require__(46);
+fpb.pluck = __webpack_require__(25);
+fpb.sortBy = __webpack_require__(47);
 
 fpb.prototype.force = function () {
     let chunks = this._chunk,
@@ -590,10 +639,10 @@ fpb.each(function (name) {
     }
 }, fpb.functions(fpb));
 
-fpb.VERSION = '1.1.2';
+fpb.VERSION = '1.1.3';
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports) {
 
 
@@ -610,10 +659,10 @@ const add = (value1, value2) => {
 module.exports = add;
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isObject = __webpack_require__(2);
+const isObject = __webpack_require__(1);
 
 const allKeys = value => {
     if (!isObject(value)) return [];
@@ -625,12 +674,12 @@ const allKeys = value => {
 module.exports = allKeys;
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-const initial = __webpack_require__(10),
-      reduceRight = __webpack_require__(11);
+const initial = __webpack_require__(13),
+      reduceRight = __webpack_require__(14);
 
 /**
  * 
@@ -643,7 +692,7 @@ const compose = (...fns) => (...args) => {
 module.exports = compose;
 
 /***/ }),
-/* 27 */
+/* 30 */
 /***/ (function(module, exports) {
 
 
@@ -670,13 +719,13 @@ const curry = func => {
 module.exports = curry;
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isFunction = __webpack_require__(4);
+const isFunction = __webpack_require__(2);
 const isArray = __webpack_require__(0);
-const isObject = __webpack_require__(2);
-const has = __webpack_require__(18);
+const isObject = __webpack_require__(1);
+const has = __webpack_require__(20);
 
 /**
  * 
@@ -699,11 +748,11 @@ const every = (predicate, value) => {
 module.exports = every;
 
 /***/ }),
-/* 29 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-const each = __webpack_require__(16);
+const each = __webpack_require__(18);
 
 /**
  * 
@@ -721,10 +770,10 @@ const filter = (iteratee, value) => {
 module.exports = filter;
 
 /***/ }),
-/* 30 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArrayLike = __webpack_require__(6);
+const isArrayLike = __webpack_require__(5);
 
 const first = value => {
     if (!isArrayLike(value)) return void 0;
@@ -734,23 +783,10 @@ const first = value => {
 module.exports = first;
 
 /***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-
-/**
- * 
- * @param {*} value
- */
-const identity = value => value;
-
-module.exports = identity;
-
-/***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(1);
+const getBaseType = __webpack_require__(3);
 
 /**
  * 
@@ -761,10 +797,10 @@ const isBoolean = value => value === true || value === false || getBaseType('Boo
 module.exports = isBoolean;
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(1);
+const getBaseType = __webpack_require__(3);
 
 /**
  * 
@@ -775,15 +811,15 @@ const isDate = value => getBaseType('Date')(value);
 module.exports = isDate;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isArray = __webpack_require__(0),
-      isString = __webpack_require__(20),
-      isArguments = __webpack_require__(19),
-      isArrayLike = __webpack_require__(6),
-      isNumber = __webpack_require__(8),
-      ownKeys = __webpack_require__(7);
+      isString = __webpack_require__(9),
+      isArguments = __webpack_require__(22),
+      isArrayLike = __webpack_require__(5),
+      isNumber = __webpack_require__(10),
+      ownKeys = __webpack_require__(6);
 
 /**
  * 
@@ -799,10 +835,10 @@ const isEmpty = value => {
 module.exports = isEmpty;
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(1);
+const getBaseType = __webpack_require__(3);
 /**
  * 
  * @param {Object} value 
@@ -812,7 +848,7 @@ const isError = value => getBaseType('Error')(value);
 module.exports = isError;
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports) {
 
 
@@ -825,10 +861,10 @@ const _isFinite = value => isFinite(value) && !isNaN(parseFloat(value));
 module.exports = _isFinite;
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isNumber = __webpack_require__(8);
+const isNumber = __webpack_require__(10);
 /**
  * 
  * @param {Object} value 
@@ -838,7 +874,7 @@ const isNaN = value => isNumber(value) && value !== +value;
 module.exports = isNaN;
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /**
@@ -850,10 +886,10 @@ const isNull = value => value === null;
 module.exports = isNull;
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(1);
+const getBaseType = __webpack_require__(3);
 
 /**
  * 
@@ -864,7 +900,7 @@ const isRegExp = value => getBaseType('RegExp')(value);
 module.exports = isRegExp;
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports) {
 
 /**
@@ -876,24 +912,7 @@ const isUndefined = value => value === void 0;
 module.exports = isUndefined;
 
 /***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(4),
-      isArray = __webpack_require__(0),
-      objectMap = __webpack_require__(21),
-      arrayMap = __webpack_require__(9);
-
-const map = (iteratee, value) => {
-    if (isObject(value) && isFunction(value)) throw new Error('Invalid data for map!');
-    return isArray(value) ? arrayMap(iteratee, value) : objectMap(iteratee, value);
-};
-
-module.exports = map;
-
-/***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 const ArrayProto = Array.prototype;
@@ -902,11 +921,11 @@ const slice = ArrayProto.slice;
 const rest = value => slice.call(value, 1);
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-const reduce = __webpack_require__(22);
+const reduce = __webpack_require__(24);
 const isArray = __webpack_require__(0);
 
 /**
@@ -921,7 +940,7 @@ const sum = list => {
 module.exports = sum;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 
@@ -929,6 +948,84 @@ module.exports = sum;
 const values = obj => Object.values(obj);
 
 module.exports = values;
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const isArrayLike = __webpack_require__(5),
+      ownKeys = __webpack_require__(6);
+
+/**
+ * 
+ * @param {function} predicate  // (value, key||index, data) => fn
+ * @param {array or object} obj 
+ */
+const some = (predicate, obj) => {
+    let keys = !isArrayLike(obj) && ownKeys(obj),
+        length = (keys || obj).length;
+    for (let i = 0; i < length; i++) {
+        let currentKey = keys ? keys[i] : i;
+        if (predicate(obj[currentKey], currentKey, obj)) return true;
+    }
+    return false;
+};
+
+module.exports = some;
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const pluck = __webpack_require__(25),
+      map = __webpack_require__(11),
+      createCb = __webpack_require__(48);
+
+/**
+ * 
+ * @param {function } iteratee 
+ * @param {list} obj 
+ */
+const sortBy = (iteratee, obj) => pluck('value', map((value, index, list) => {
+    return {
+        value: value,
+        index: index,
+        criteria: createCb(iteratee)(value, index, list)
+    };
+}, obj).sort((left, right) => {
+    var a = left.criteria;
+    var b = right.criteria;
+    if (a !== b) {
+        if (a > b || a === void 0) return 1;
+        if (a < b || b === void 0) return -1;
+    }
+    return left.index - right.index;
+}));
+
+module.exports = sortBy;
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const isFunction = __webpack_require__(2),
+      isObject = __webpack_require__(1),
+      getProperty = __webpack_require__(8),
+      isString = __webpack_require__(9),
+      identity = __webpack_require__(21);
+
+/**
+ * 
+ * @param {*} value 
+ */
+const createCb = value => {
+    if (value == null) return identity;
+    if (isFunction(value)) return value;
+    if (isString(value)) return getProperty(value);
+    throw new Error('Invalid argument for createCb!');
+};
+
+module.exports = createCb;
 
 /***/ })
 /******/ ]);

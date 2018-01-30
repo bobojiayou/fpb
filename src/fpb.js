@@ -63,6 +63,9 @@ fpb.reduceRight = require('./reduceRight')
 fpb.rest = require('./rest')
 fpb.sum = require('./sum')
 fpb.values = require('./values')
+fpb.some = require('./some')
+fpb.pluck = require('./pluck')
+fpb.sortBy = require('./sortBy')
 
 fpb.prototype.force = function () {
     let chunks = this._chunk, target = this._target
@@ -112,5 +115,5 @@ fpb.each(function (name) {
     }
 }, fpb.functions(fpb))
 
-fpb.VERSION = '1.1.3';
+fpb.VERSION = '1.1.4';
 

@@ -147,6 +147,34 @@ module.exports = getBaseType;
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
+const getBaseType = __webpack_require__(4);
+
+/**
+ * 
+ * @param {Object} obj 
+ */
+const isString = value => getBaseType('String')(value);
+
+module.exports = isString;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const getBaseType = __webpack_require__(4);
+
+/**
+ * 
+ * @param {Object} value 
+ */
+const isNumber = value => getBaseType('Number')(value);
+
+module.exports = isNumber;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
 const isLength = __webpack_require__(18),
       isFunction = __webpack_require__(1);
 
@@ -159,34 +187,6 @@ const isArrayLike = value => {
 };
 
 module.exports = isArrayLike;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const getBaseType = __webpack_require__(4);
-
-/**
- * 
- * @param {Object} obj 
- */
-const isString = value => getBaseType('String')(value);
-
-module.exports = isString;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const getBaseType = __webpack_require__(4);
-
-/**
- * 
- * @param {Object} value 
- */
-const isNumber = value => getBaseType('Number')(value);
-
-module.exports = isNumber;
 
 /***/ }),
 /* 8 */
@@ -356,7 +356,7 @@ module.exports = createReduce;
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArrayLike = __webpack_require__(5),
+const isArrayLike = __webpack_require__(7),
       getLength = __webpack_require__(3);
 
 const last = value => {
@@ -459,10 +459,10 @@ module.exports = isArguments;
 /***/ (function(module, exports, __webpack_require__) {
 
 const isArray = __webpack_require__(0),
-      isString = __webpack_require__(6),
+      isString = __webpack_require__(5),
       isArguments = __webpack_require__(22),
-      isArrayLike = __webpack_require__(5),
-      isNumber = __webpack_require__(7),
+      isArrayLike = __webpack_require__(7),
+      isNumber = __webpack_require__(6),
       ownKeys = __webpack_require__(8);
 
 /**
@@ -598,7 +598,7 @@ fpb.identity = __webpack_require__(21);
 fpb.initial = __webpack_require__(14);
 fpb.isArguments = __webpack_require__(22);
 fpb.isArray = __webpack_require__(0);
-fpb.isArrayLike = __webpack_require__(5);
+fpb.isArrayLike = __webpack_require__(7);
 fpb.isBoolean = __webpack_require__(36);
 fpb.isDate = __webpack_require__(37);
 fpb.isEmpty = __webpack_require__(23);
@@ -608,10 +608,10 @@ fpb.isFunction = __webpack_require__(1);
 fpb.isLength = __webpack_require__(18);
 fpb.isNaN = __webpack_require__(40);
 fpb.isNull = __webpack_require__(41);
-fpb.isNumber = __webpack_require__(7);
+fpb.isNumber = __webpack_require__(6);
 fpb.isObject = __webpack_require__(2);
 fpb.isRegExp = __webpack_require__(42);
-fpb.isString = __webpack_require__(6);
+fpb.isString = __webpack_require__(5);
 fpb.isUndefined = __webpack_require__(24);
 fpb.last = __webpack_require__(17);
 fpb.map = __webpack_require__(12);
@@ -629,6 +629,7 @@ fpb.sortBy = __webpack_require__(47);
 fpb.unique = __webpack_require__(49);
 fpb.equalBy = __webpack_require__(50);
 fpb.contains = __webpack_require__(51);
+fpb.objectMerge = __webpack_require__(52);
 
 fpb.prototype.force = function () {
     let chunks = this._chunk,
@@ -812,7 +813,7 @@ module.exports = filter;
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArrayLike = __webpack_require__(5);
+const isArrayLike = __webpack_require__(7);
 
 const first = value => {
     if (!isArrayLike(value)) return void 0;
@@ -879,7 +880,7 @@ module.exports = _isFinite;
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isNumber = __webpack_require__(7);
+const isNumber = __webpack_require__(6);
 /**
  * 
  * @param {Object} value 
@@ -956,7 +957,7 @@ module.exports = values;
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArrayLike = __webpack_require__(5),
+const isArrayLike = __webpack_require__(7),
       ownKeys = __webpack_require__(8);
 
 /**
@@ -1014,7 +1015,7 @@ module.exports = sortBy;
 const isFunction = __webpack_require__(1),
       isObject = __webpack_require__(2),
       getProperty = __webpack_require__(10),
-      isString = __webpack_require__(6),
+      isString = __webpack_require__(5),
       identity = __webpack_require__(21);
 
 /**
@@ -1034,11 +1035,11 @@ module.exports = createCb;
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isNumber = __webpack_require__(7),
+const isNumber = __webpack_require__(6),
       isArray = __webpack_require__(0),
-      isString = __webpack_require__(6),
+      isString = __webpack_require__(5),
       isUndefinded = __webpack_require__(24),
-      isArrayLike = __webpack_require__(5),
+      isArrayLike = __webpack_require__(7),
       getLength = __webpack_require__(3),
       hasKey = __webpack_require__(11),
       isFunction = __webpack_require__(1);
@@ -1063,8 +1064,8 @@ module.exports = unique;
 
 const isArray = __webpack_require__(0),
       isFunction = __webpack_require__(1),
-      isString = __webpack_require__(6),
-      isNumber = __webpack_require__(7),
+      isString = __webpack_require__(5),
+      isNumber = __webpack_require__(6),
       isEmpty = __webpack_require__(23);
 /**
  * 
@@ -1096,8 +1097,8 @@ module.exports = equalBy;
 /***/ (function(module, exports, __webpack_require__) {
 
 const isArray = __webpack_require__(0),
-      isString = __webpack_require__(6),
-      isNumber = __webpack_require__(7),
+      isString = __webpack_require__(5),
+      isNumber = __webpack_require__(6),
       isFunction = __webpack_require__(1);
 
 /**
@@ -1126,6 +1127,53 @@ const contains = (keys, data) => {
 };
 
 module.exports = contains;
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const isArray = __webpack_require__(0),
+      isString = __webpack_require__(5),
+      isNumber = __webpack_require__(6),
+      ownKeys = __webpack_require__(8),
+      isObject = __webpack_require__(2),
+      isFunction = __webpack_require__(1);
+
+/**
+ * 
+ * @param {Array|String|Number} mergeKeys 
+ * @param {Function} mergeFn
+ * @param {Object} originObj 
+ * @param {Object} dataObj 
+ */
+
+const objectMerge = (mergeKeys, mergeFn, originObj, dataObj) => {
+    if (!isString(mergeKeys) && !isFunction(mergeKeys) && !isArray(mergeKeys) && !isNumber(mergeKeys)) throw new TypeError(`the first argument shoud be funciton | array | string | Number`);
+    if (!isFunction(mergeFn)) throw new TypeError(`the second argument should be function`);
+    if (!isObject(originObj) || !isObject(dataObj) || isArray(dataObj) || isArray(originObj) || isFunction(dataObj) || isFunction(originObj)) throw new TypeError(`the merge objects should be object`);
+
+    let originObjKeys = ownKeys(originObj) || [];
+    let _mergeKeys;
+    if (isNumber(mergeKeys) || isString(mergeKeys)) {
+        _mergeKeys = [mergeKeys];
+    }
+    if (isArray(mergeKeys)) {
+        _mergeKeys = mergeKeys;
+    }
+    if (isFunction(mergeKeys)) {
+        const keys = mergeKeys.apply(null);
+        _mergeKeys = isArray(keys) ? keys : [keys];
+    }
+
+    let rstObj = Object.assign({}, originObj);
+    for (let index = 0; index < _mergeKeys.length; index++) {
+        const _mergeKey = _mergeKeys[index];
+        rstObj[_mergeKey] = mergeFn.call(null, originObj[_mergeKey], dataObj[_mergeKey]);
+    }
+    return rstObj;
+};
+
+module.exports = objectMerge;
 
 /***/ })
 /******/ ]);

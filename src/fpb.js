@@ -69,6 +69,7 @@ fpb.sortBy = require('./sortBy')
 fpb.unique = require('./unique')
 fpb.equalBy = require('./_equalBy')
 fpb.contains = require('./contains')
+fpb.objectMerge = require('./objectMerge')
 
 fpb.prototype.force = function () {
     let chunks = this._chunk, target = this._target

@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 28);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -557,6 +557,87 @@ module.exports = pluck;
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
+const isArray = __webpack_require__(0),
+      isFunction = __webpack_require__(1),
+      isString = __webpack_require__(5),
+      isNumber = __webpack_require__(6),
+      isEmpty = __webpack_require__(23);
+/**
+ * 
+ * @param {Function|Array|String|Number} keys 
+ * @param {*} originObj 
+ * @param {*} dataObj 
+ */
+const equalBy = (keys, originObj, dataObj) => {
+    if (!isString(keys) && !isFunction(keys) && !isArray(keys) && !isNumber(keys)) throw new TypeError(`keys shoud be funciton | array | string | Number`);
+    if (isEmpty(keys)) throw new TypeError(`keys shoud be empty!`);
+    let _keys;
+    if (isFunction(keys)) {
+        return keys.call(null, originObj) === keys.call(null, dataObj);
+    } else {
+        _keys = isArray(keys) ? keys : [keys];
+        let rst = true;
+        for (let index = 0; index < _keys.length; index++) {
+            const _key = _keys[index];
+            rst = rst && originObj[_key] === dataObj[_key];
+        }
+        return rst;
+    }
+};
+
+module.exports = equalBy;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const isArray = __webpack_require__(0),
+      isString = __webpack_require__(5),
+      isNumber = __webpack_require__(6),
+      ownKeys = __webpack_require__(8),
+      isObject = __webpack_require__(2),
+      isFunction = __webpack_require__(1);
+
+/**
+ * 
+ * @param {Array|String|Number} mergeKeys 
+ * @param {Function} mergeFn
+ * @param {Object} originObj 
+ * @param {Object} dataObj 
+ */
+
+const objectMerge = (mergeKeys, mergeFn, originObj, dataObj) => {
+    if (!isString(mergeKeys) && !isFunction(mergeKeys) && !isArray(mergeKeys) && !isNumber(mergeKeys)) throw new TypeError(`the first argument shoud be funciton | array | string | Number`);
+    if (!isFunction(mergeFn)) throw new TypeError(`the second argument should be function`);
+    if (!isObject(originObj) || !isObject(dataObj) || isArray(dataObj) || isArray(originObj) || isFunction(dataObj) || isFunction(originObj)) throw new TypeError(`the merge objects should be object`);
+
+    let originObjKeys = ownKeys(originObj) || [];
+    let _mergeKeys;
+    if (isNumber(mergeKeys) || isString(mergeKeys)) {
+        _mergeKeys = [mergeKeys];
+    }
+    if (isArray(mergeKeys)) {
+        _mergeKeys = mergeKeys;
+    }
+    if (isFunction(mergeKeys)) {
+        const keys = mergeKeys.apply(null);
+        _mergeKeys = isArray(keys) ? keys : [keys];
+    }
+
+    let rstObj = Object.assign({}, originObj);
+    for (let index = 0; index < _mergeKeys.length; index++) {
+        const _mergeKey = _mergeKeys[index];
+        rstObj[_mergeKey] = mergeFn.call(null, originObj[_mergeKey], dataObj[_mergeKey]);
+    }
+    return rstObj;
+};
+
+module.exports = objectMerge;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -581,16 +662,16 @@ fpb.chain = (value, notLazy) => {
     return instance;
 };
 
-fpb.add = __webpack_require__(29);
-fpb.allKeys = __webpack_require__(30);
+fpb.add = __webpack_require__(31);
+fpb.allKeys = __webpack_require__(32);
 fpb.arrayEach = __webpack_require__(9);
 fpb.arrayMap = __webpack_require__(13);
-fpb.compose = __webpack_require__(31);
-fpb.curry = __webpack_require__(32);
+fpb.compose = __webpack_require__(33);
+fpb.curry = __webpack_require__(34);
 fpb.each = __webpack_require__(19);
-fpb.every = __webpack_require__(33);
-fpb.filter = __webpack_require__(34);
-fpb.first = __webpack_require__(35);
+fpb.every = __webpack_require__(35);
+fpb.filter = __webpack_require__(36);
+fpb.first = __webpack_require__(37);
 fpb.getLength = __webpack_require__(3);
 fpb.getProperty = __webpack_require__(10);
 fpb.has = __webpack_require__(11);
@@ -599,18 +680,18 @@ fpb.initial = __webpack_require__(14);
 fpb.isArguments = __webpack_require__(22);
 fpb.isArray = __webpack_require__(0);
 fpb.isArrayLike = __webpack_require__(7);
-fpb.isBoolean = __webpack_require__(36);
-fpb.isDate = __webpack_require__(37);
+fpb.isBoolean = __webpack_require__(38);
+fpb.isDate = __webpack_require__(39);
 fpb.isEmpty = __webpack_require__(23);
-fpb.isError = __webpack_require__(38);
-fpb.isFinite = __webpack_require__(39);
+fpb.isError = __webpack_require__(40);
+fpb.isFinite = __webpack_require__(41);
 fpb.isFunction = __webpack_require__(1);
 fpb.isLength = __webpack_require__(18);
-fpb.isNaN = __webpack_require__(40);
-fpb.isNull = __webpack_require__(41);
+fpb.isNaN = __webpack_require__(42);
+fpb.isNull = __webpack_require__(43);
 fpb.isNumber = __webpack_require__(6);
 fpb.isObject = __webpack_require__(2);
-fpb.isRegExp = __webpack_require__(42);
+fpb.isRegExp = __webpack_require__(44);
 fpb.isString = __webpack_require__(5);
 fpb.isUndefined = __webpack_require__(24);
 fpb.last = __webpack_require__(17);
@@ -620,16 +701,17 @@ fpb.objectMap = __webpack_require__(25);
 fpb.ownKeys = __webpack_require__(8);
 fpb.reduce = __webpack_require__(26);
 fpb.reduceRight = __webpack_require__(15);
-fpb.rest = __webpack_require__(43);
-fpb.sum = __webpack_require__(44);
-fpb.values = __webpack_require__(45);
-fpb.some = __webpack_require__(46);
+fpb.rest = __webpack_require__(45);
+fpb.sum = __webpack_require__(46);
+fpb.values = __webpack_require__(47);
+fpb.some = __webpack_require__(48);
 fpb.pluck = __webpack_require__(27);
-fpb.sortBy = __webpack_require__(47);
-fpb.unique = __webpack_require__(49);
-fpb.equalBy = __webpack_require__(50);
-fpb.contains = __webpack_require__(51);
-fpb.objectMerge = __webpack_require__(52);
+fpb.sortBy = __webpack_require__(49);
+fpb.unique = __webpack_require__(51);
+fpb.equalBy = __webpack_require__(28);
+fpb.contains = __webpack_require__(52);
+fpb.objectMerge = __webpack_require__(29);
+fpb.arrayMerge = __webpack_require__(53);
 
 fpb.prototype.force = function () {
     let chunks = this._chunk,
@@ -682,7 +764,7 @@ fpb.each(function (name) {
 fpb.VERSION = '1.1.6';
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports) {
 
 
@@ -699,7 +781,7 @@ const add = (value1, value2) => {
 module.exports = add;
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isObject = __webpack_require__(2);
@@ -714,7 +796,7 @@ const allKeys = value => {
 module.exports = allKeys;
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -732,7 +814,7 @@ const compose = (...fns) => (...args) => {
 module.exports = compose;
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports) {
 
 
@@ -759,7 +841,7 @@ const curry = func => {
 module.exports = curry;
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isFunction = __webpack_require__(1);
@@ -788,7 +870,7 @@ const every = (predicate, value) => {
 module.exports = every;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -810,7 +892,7 @@ const filter = (iteratee, value) => {
 module.exports = filter;
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isArrayLike = __webpack_require__(7);
@@ -823,7 +905,7 @@ const first = value => {
 module.exports = first;
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const getBaseType = __webpack_require__(4);
@@ -837,7 +919,7 @@ const isBoolean = value => value === true || value === false || getBaseType('Boo
 module.exports = isBoolean;
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const getBaseType = __webpack_require__(4);
@@ -851,7 +933,7 @@ const isDate = value => getBaseType('Date')(value);
 module.exports = isDate;
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const getBaseType = __webpack_require__(4);
@@ -864,7 +946,7 @@ const isError = value => getBaseType('Error')(value);
 module.exports = isError;
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports) {
 
 
@@ -877,7 +959,7 @@ const _isFinite = value => isFinite(value) && !isNaN(parseFloat(value));
 module.exports = _isFinite;
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isNumber = __webpack_require__(6);
@@ -890,7 +972,7 @@ const isNaN = value => isNumber(value) && value !== +value;
 module.exports = isNaN;
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports) {
 
 /**
@@ -902,7 +984,7 @@ const isNull = value => value === null;
 module.exports = isNull;
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const getBaseType = __webpack_require__(4);
@@ -916,7 +998,7 @@ const isRegExp = value => getBaseType('RegExp')(value);
 module.exports = isRegExp;
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports) {
 
 const ArrayProto = Array.prototype;
@@ -925,7 +1007,7 @@ const slice = ArrayProto.slice;
 const rest = value => slice.call(value, 1);
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -944,7 +1026,7 @@ const sum = list => {
 module.exports = sum;
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports) {
 
 
@@ -954,7 +1036,7 @@ const values = obj => Object.values(obj);
 module.exports = values;
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isArrayLike = __webpack_require__(7),
@@ -978,12 +1060,12 @@ const some = (predicate, obj) => {
 module.exports = some;
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const pluck = __webpack_require__(27),
       map = __webpack_require__(12),
-      createCb = __webpack_require__(48);
+      createCb = __webpack_require__(50);
 
 /**
  * 
@@ -1009,7 +1091,7 @@ const sortBy = (iteratee, obj) => pluck('value', map((value, index, list) => {
 module.exports = sortBy;
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isFunction = __webpack_require__(1),
@@ -1032,7 +1114,7 @@ const createCb = value => {
 module.exports = createCb;
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isNumber = __webpack_require__(6),
@@ -1059,41 +1141,7 @@ const unique = array => {
 module.exports = unique;
 
 /***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const isArray = __webpack_require__(0),
-      isFunction = __webpack_require__(1),
-      isString = __webpack_require__(5),
-      isNumber = __webpack_require__(6),
-      isEmpty = __webpack_require__(23);
-/**
- * 
- * @param {Function|Array|String|Number} keys 
- * @param {*} originObj 
- * @param {*} dataObj 
- */
-const equalBy = (keys, originObj, dataObj) => {
-    if (!isString(keys) && !isFunction(keys) && !isArray(keys) && !isNumber(keys)) throw new TypeError(`keys shoud be funciton | array | string | Number`);
-    if (isEmpty(keys)) throw new TypeError(`keys shoud be empty!`);
-    let _keys;
-    if (isFunction(keys)) {
-        return keys.call(null, originObj) === keys.call(null, dataObj);
-    } else {
-        _keys = isArray(keys) ? keys : [keys];
-        let rst = true;
-        for (let index = 0; index < _keys.length; index++) {
-            const _key = _keys[index];
-            rst = rst && originObj[_key] === dataObj[_key];
-        }
-        return rst;
-    }
-};
-
-module.exports = equalBy;
-
-/***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isArray = __webpack_require__(0),
@@ -1129,51 +1177,43 @@ const contains = (keys, data) => {
 module.exports = contains;
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const isArray = __webpack_require__(0),
-      isString = __webpack_require__(5),
-      isNumber = __webpack_require__(6),
-      ownKeys = __webpack_require__(8),
-      isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(1);
+      objectMerge = __webpack_require__(29),
+      equalBy = __webpack_require__(28);
 
 /**
  * 
- * @param {Array|String|Number} mergeKeys 
- * @param {Function} mergeFn
- * @param {Object} originObj 
- * @param {Object} dataObj 
+ * @param {String | Array | Function | Number} identityKey 
+ * @param {Array|String|Number} mergeKey 
+ * @param {Function} mergeFn 
+ * @param {Array} originArr 
+ * @param {Array} dataArr 
  */
+const arrayMerge = (identityKey, mergeKey, mergeFn, originArr, dataArr) => {
+    if (!isArray(originArr)) throw new TypeError(`the fourth argument should be array`);
+    if (!isArray(dataArr)) throw new TypeError(`the fifth argument should be array`);
 
-const objectMerge = (mergeKeys, mergeFn, originObj, dataObj) => {
-    if (!isString(mergeKeys) && !isFunction(mergeKeys) && !isArray(mergeKeys) && !isNumber(mergeKeys)) throw new TypeError(`the first argument shoud be funciton | array | string | Number`);
-    if (!isFunction(mergeFn)) throw new TypeError(`the second argument should be function`);
-    if (!isObject(originObj) || !isObject(dataObj) || isArray(dataObj) || isArray(originObj) || isFunction(dataObj) || isFunction(originObj)) throw new TypeError(`the merge objects should be object`);
-
-    let originObjKeys = ownKeys(originObj) || [];
-    let _mergeKeys;
-    if (isNumber(mergeKeys) || isString(mergeKeys)) {
-        _mergeKeys = [mergeKeys];
+    const bigArr = originArr.concat(dataArr);
+    for (let i = 0; i < bigArr.length; i++) {
+        let ele = bigArr[i];
+        for (let j = i + 1; j < bigArr.length; j++) {
+            const rstEle = bigArr[j];
+            // 已有的rstArr里，是否有要和我merge的对象
+            if (equalBy(identityKey, rstEle, ele)) {
+                // 有的话，merge
+                ele = objectMerge(mergeKey, mergeFn, ele, rstEle);
+                bigArr[i] = ele;
+                bigArr.splice(j, 1);
+            }
+        }
     }
-    if (isArray(mergeKeys)) {
-        _mergeKeys = mergeKeys;
-    }
-    if (isFunction(mergeKeys)) {
-        const keys = mergeKeys.apply(null);
-        _mergeKeys = isArray(keys) ? keys : [keys];
-    }
-
-    let rstObj = Object.assign({}, originObj);
-    for (let index = 0; index < _mergeKeys.length; index++) {
-        const _mergeKey = _mergeKeys[index];
-        rstObj[_mergeKey] = mergeFn.call(null, originObj[_mergeKey], dataObj[_mergeKey]);
-    }
-    return rstObj;
+    return bigArr;
 };
 
-module.exports = objectMerge;
+module.exports = arrayMerge;
 
 /***/ })
 /******/ ]);

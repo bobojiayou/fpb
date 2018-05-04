@@ -339,7 +339,7 @@ const getLength = __webpack_require__(3),
 const createReduce = (...args) => {
     let len = getLength(args);
     if (len < 3) throw new Error('Invalid args');
-    let arr, iteratee, initValue, _args;
+    let arr, iteratee, initValue, _args, dir;
     if (len === 3) {
         [iteratee, arr, dir] = args;
         _args = [iteratee];
@@ -652,7 +652,7 @@ fpb.each(function (name) {
     }
 }, fpb.functions(fpb));
 
-fpb.VERSION = '1.1.4';
+fpb.VERSION = '1.1.6';
 
 /***/ }),
 /* 28 */

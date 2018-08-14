@@ -65,6 +65,7 @@ describe('typeDec function test', function () {
 
     it('should judging Is a given variable a Number', function () {
         expect(isNumber(_num)).toEqual(true)
+        expect(isNumber(NaN)).toEqual(true)
         expect(isNumber(_str)).toEqual(false)
     });
 

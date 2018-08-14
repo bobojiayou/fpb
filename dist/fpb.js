@@ -75,14 +75,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
  * 
  * @param {Object} obj 
  */
-const isArray = value => Array.isArray(value);
+var isArray = function isArray(value) {
+  return Array.isArray(value);
+};
 
 module.exports = isArray;
 
@@ -90,26 +94,35 @@ module.exports = isArray;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(4);
+"use strict";
+
+
+var getBaseType = __webpack_require__(4);
 /**
  * 
  * @param {Object} obj 
  */
-const isFunction = value => getBaseType('Function')(value);
+var isFunction = function isFunction(value) {
+  return getBaseType('Function')(value);
+};
 
 module.exports = isFunction;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /**
  * 
  * @param {object} value 
  */
-const isObject = value => {
-  var type = typeof value;
+var isObject = function isObject(value) {
+  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
   return value != null && (type == 'object' || type == 'function');
 };
 
@@ -119,27 +132,39 @@ module.exports = isObject;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getProperty = __webpack_require__(8);
+"use strict";
+
+
+var getProperty = __webpack_require__(8);
 
 /**
  * 
  * @param {*} value 
  */
-const getLength = value => getProperty('length')(value);
+var getLength = function getLength(value) {
+  return getProperty('length')(value);
+};
 
 module.exports = getLength;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-const ObjProto = Object.prototype;
-const toString = ObjProto.toString;
+"use strict";
+
+
+var ObjProto = Object.prototype;
+var toString = ObjProto.toString;
 /**
  * 
  * @param {String} The type name 
  */
-const getBaseType = name => obj => toString.call(obj) === '[object ' + name + ']';
+var getBaseType = function getBaseType(name) {
+  return function (obj) {
+    return toString.call(obj) === '[object ' + name + ']';
+  };
+};
 
 module.exports = getBaseType;
 
@@ -147,14 +172,17 @@ module.exports = getBaseType;
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isLength = __webpack_require__(18),
-      isFunction = __webpack_require__(1);
+"use strict";
+
+
+var isLength = __webpack_require__(18),
+    isFunction = __webpack_require__(1);
 
 /**
  * 
  * @param {Any} value 
  */
-const isArrayLike = value => {
+var isArrayLike = function isArrayLike(value) {
     return value != null && isLength(value.length) && !isFunction(value);
 };
 
@@ -162,7 +190,9 @@ module.exports = isArrayLike;
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
@@ -170,7 +200,9 @@ module.exports = isArrayLike;
  * @param {Object} obj 
  */
 
-const ownKeys = obj => Reflect.ownKeys(obj);
+var ownKeys = function ownKeys(obj) {
+  return Reflect.ownKeys(obj);
+};
 
 module.exports = ownKeys;
 
@@ -178,9 +210,12 @@ module.exports = ownKeys;
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArray = __webpack_require__(0);
+"use strict";
 
-const arrayEach = (iteratee, value) => {
+
+var isArray = __webpack_require__(0);
+
+var arrayEach = function arrayEach(iteratee, value) {
     if (!isArray(value)) return value;
     value.forEach(iteratee);
     return value;
@@ -190,7 +225,9 @@ module.exports = arrayEach;
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
@@ -198,7 +235,11 @@ module.exports = arrayEach;
  * @param {*} key 
  */
 
-const getProperty = key => value => value == null ? void 0 : value[key];
+var getProperty = function getProperty(key) {
+  return function (value) {
+    return value == null ? void 0 : value[key];
+  };
+};
 
 module.exports = getProperty;
 
@@ -206,13 +247,18 @@ module.exports = getProperty;
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(4);
+"use strict";
+
+
+var getBaseType = __webpack_require__(4);
 
 /**
  * 
  * @param {Object} obj 
  */
-const isString = value => getBaseType('String')(value);
+var isString = function isString(value) {
+  return getBaseType('String')(value);
+};
 
 module.exports = isString;
 
@@ -220,19 +266,26 @@ module.exports = isString;
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(4);
+"use strict";
+
+
+var getBaseType = __webpack_require__(4);
 
 /**
  * 
  * @param {Object} value 
  */
-const isNumber = value => getBaseType('Number')(value);
+var isNumber = function isNumber(value) {
+  return getBaseType('Number')(value);
+};
 
 module.exports = isNumber;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
@@ -241,7 +294,7 @@ module.exports = isNumber;
  * @param {object} value 
  */
 
-const has = (key, value) => {
+var has = function has(key, value) {
   return value != null && Object.prototype.hasOwnProperty.call(value, key);
 };
 
@@ -251,13 +304,16 @@ module.exports = has;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(1),
-      isArray = __webpack_require__(0),
-      objectMap = __webpack_require__(24),
-      arrayMap = __webpack_require__(13);
+"use strict";
 
-const map = (iteratee, value) => {
+
+var isObject = __webpack_require__(2),
+    isFunction = __webpack_require__(1),
+    isArray = __webpack_require__(0),
+    objectMap = __webpack_require__(24),
+    arrayMap = __webpack_require__(13);
+
+var map = function map(iteratee, value) {
     if (isObject(value) && isFunction(value)) throw new Error('Invalid data for map!');
     return isArray(value) ? arrayMap(iteratee, value) : objectMap(iteratee, value);
 };
@@ -268,14 +324,17 @@ module.exports = map;
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArray = __webpack_require__(0);
+"use strict";
+
+
+var isArray = __webpack_require__(0);
 
 /**
  * 
  * @param {Function} iteratee 
  * @param {Array} value 
  */
-const arrayMap = (iteratee, value) => {
+var arrayMap = function arrayMap(iteratee, value) {
   if (!isArray(value)) return value;
   return value.map(iteratee);
 };
@@ -284,7 +343,9 @@ module.exports = arrayMap;
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
@@ -292,7 +353,7 @@ module.exports = arrayMap;
  * @param {Array} array 
  */
 
-const initial = array => {
+var initial = function initial(array) {
   return Array.prototype.slice.call(array, 0, Math.max(array.length - 1, 0));
 };
 
@@ -302,9 +363,13 @@ module.exports = initial;
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-const createReduce = __webpack_require__(16),
-      getLength = __webpack_require__(3);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var createReduce = __webpack_require__(16),
+    getLength = __webpack_require__(3);
 
 /**
 * 
@@ -312,9 +377,13 @@ const createReduce = __webpack_require__(16),
 * @param {*} initValue 
 * @param {Array} list 
 */
-const reduceRight = (...args) => {
-    let _args = [...args, -1];
-    return createReduce(..._args);
+var reduceRight = function reduceRight() {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
+
+    var _args = [].concat(args, [-1]);
+    return createReduce.apply(undefined, _toConsumableArray(_args));
 };
 
 // console.log(reduceRight((prev, value) => prev - value, [1, 2, 3, 4]))
@@ -324,10 +393,14 @@ module.exports = reduceRight;
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-const getLength = __webpack_require__(3),
-      isArray = __webpack_require__(0),
-      last = __webpack_require__(17);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var getLength = __webpack_require__(3),
+    isArray = __webpack_require__(0),
+    last = __webpack_require__(17);
 
 /**
  * 
@@ -336,18 +409,34 @@ const getLength = __webpack_require__(3),
  * @param {Array} array 
  * @param {Number} dir  -1 => reduceRight,  1 => reduce
  */
-const createReduce = (...args) => {
-    let len = getLength(args);
+var createReduce = function createReduce() {
+    var _arr, _arr2;
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
+
+    var len = getLength(args);
     if (len < 3) throw new Error('Invalid args');
-    let arr, iteratee, initValue, _args;
+    var arr = void 0,
+        iteratee = void 0,
+        initValue = void 0,
+        _args = void 0;
     if (len === 3) {
-        [iteratee, arr, dir] = args;
+        iteratee = args[0];
+        arr = args[1];
+        dir = args[2];
+
         _args = [iteratee];
     } else {
-        [iteratee, initValue, arr, dir] = args;
+        iteratee = args[0];
+        initValue = args[1];
+        arr = args[2];
+        dir = args[3];
+
         _args = [iteratee, initValue];
     }
-    return dir === 1 ? arr.reduce(..._args) : arr.reduceRight(..._args);
+    return dir === 1 ? (_arr = arr).reduce.apply(_arr, _toConsumableArray(_args)) : (_arr2 = arr).reduceRight.apply(_arr2, _toConsumableArray(_args));
 };
 
 module.exports = createReduce;
@@ -356,10 +445,13 @@ module.exports = createReduce;
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArrayLike = __webpack_require__(5),
-      getLength = __webpack_require__(3);
+"use strict";
 
-const last = value => {
+
+var isArrayLike = __webpack_require__(5),
+    getLength = __webpack_require__(3);
+
+var last = function last(value) {
     if (!isArrayLike(value)) return void 0;
     return value[getLength(value) - 1];
 };
@@ -368,7 +460,10 @@ module.exports = last;
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -376,7 +471,7 @@ var MAX_SAFE_INTEGER = 9007199254740991;
  * 
  * @param {*} value 
  */
-const isLength = value => {
+var isLength = function isLength(value) {
   return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
 };
 
@@ -386,18 +481,21 @@ module.exports = isLength;
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(1),
-      isArray = __webpack_require__(0),
-      objectEach = __webpack_require__(20),
-      arrayEach = __webpack_require__(7);
+"use strict";
+
+
+var isObject = __webpack_require__(2),
+    isFunction = __webpack_require__(1),
+    isArray = __webpack_require__(0),
+    objectEach = __webpack_require__(20),
+    arrayEach = __webpack_require__(7);
 
 /**
  *  
  * @param {Function} iteratee 
  * @param {Object} value 
  */
-const each = (iteratee, value) => {
+var each = function each(iteratee, value) {
     if (isObject(value) && isFunction(value)) throw new Error('Invalid data for each!');
     return isArray(value) ? arrayEach(iteratee, value) : objectEach(iteratee, value);
 };
@@ -408,18 +506,21 @@ module.exports = each;
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(1),
-      arrayEach = __webpack_require__(7),
-      ownKeys = __webpack_require__(6),
-      getLength = __webpack_require__(3);
+"use strict";
 
-const objectEach = (iteratee, value) => {
+
+var isObject = __webpack_require__(2),
+    isFunction = __webpack_require__(1),
+    arrayEach = __webpack_require__(7),
+    ownKeys = __webpack_require__(6),
+    getLength = __webpack_require__(3);
+
+var objectEach = function objectEach(iteratee, value) {
     if (!isObject(value) || isFunction(value)) return value;
-    let keys = ownKeys(value);
-    let len = getLength(keys);
-    for (let index = 0; index < len; index++) {
-        let key = keys && keys[index];
+    var keys = ownKeys(value);
+    var len = getLength(keys);
+    for (var index = 0; index < len; index++) {
+        var key = keys && keys[index];
         iteratee(value[key], key, value);
     }
     return value;
@@ -429,14 +530,18 @@ module.exports = objectEach;
 
 /***/ }),
 /* 21 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
  * 
  * @param {*} value
  */
-const identity = value => value;
+var identity = function identity(value) {
+  return value;
+};
 
 module.exports = identity;
 
@@ -444,25 +549,35 @@ module.exports = identity;
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(4);
+"use strict";
+
+
+var getBaseType = __webpack_require__(4);
 
 /**
  * 
  * @param {*} value 
  */
-const isArguments = value => getBaseType('Arguments')(value);
+var isArguments = function isArguments(value) {
+  return getBaseType('Arguments')(value);
+};
 
 module.exports = isArguments;
 
 /***/ }),
 /* 23 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /**
  * 
  * @param {Object} value
  */
-const isUndefined = value => value === void 0;
+var isUndefined = function isUndefined(value) {
+  return value === void 0;
+};
 
 module.exports = isUndefined;
 
@@ -470,19 +585,22 @@ module.exports = isUndefined;
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isObject = __webpack_require__(2),
-      isFunction = __webpack_require__(1),
-      arrayEach = __webpack_require__(7),
-      ownKeys = __webpack_require__(6),
-      getLength = __webpack_require__(3);
+"use strict";
 
-const objectMap = (iteratee, value) => {
+
+var isObject = __webpack_require__(2),
+    isFunction = __webpack_require__(1),
+    arrayEach = __webpack_require__(7),
+    ownKeys = __webpack_require__(6),
+    getLength = __webpack_require__(3);
+
+var objectMap = function objectMap(iteratee, value) {
     if (!isObject(value) || isFunction(value)) return value;
-    let keys = ownKeys(value);
-    let len = getLength(keys);
-    let rst = {};
-    for (let index = 0; index < len; index++) {
-        let key = keys && keys[index];
+    var keys = ownKeys(value);
+    var len = getLength(keys);
+    var rst = {};
+    for (var index = 0; index < len; index++) {
+        var key = keys && keys[index];
         rst[key] = iteratee(value[key], key);
     }
     return rst;
@@ -494,9 +612,13 @@ module.exports = objectMap;
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-const createReduce = __webpack_require__(16),
-      getLength = __webpack_require__(3);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var createReduce = __webpack_require__(16),
+    getLength = __webpack_require__(3);
 
 /**
  * 
@@ -505,9 +627,13 @@ const createReduce = __webpack_require__(16),
  * @param {Array} list 
  */
 // args =  (iteratee, initValue, array)
-const reduce = (...args) => {
-    let _args = [...args, 1];
-    return createReduce(..._args);
+var reduce = function reduce() {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
+
+    var _args = [].concat(args, [1]);
+    return createReduce.apply(undefined, _toConsumableArray(_args));
 };
 
 // console.log(reduce((prev, value) => prev - value, [1, 2, 3, 4]))
@@ -517,15 +643,20 @@ module.exports = reduce;
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const map = __webpack_require__(12),
-      getProperty = __webpack_require__(8);
+"use strict";
+
+
+var map = __webpack_require__(12),
+    getProperty = __webpack_require__(8);
 
 /**
  * 
  * @param {string} key 
  * @param {list} obj 
  */
-const pluck = (key, obj) => map(getProperty(key), obj);
+var pluck = function pluck(key, obj) {
+    return map(getProperty(key), obj);
+};
 
 module.exports = pluck;
 
@@ -537,7 +668,7 @@ module.exports = pluck;
 
 
 
-const fpb = module.exports = function (value) {
+var fpb = module.exports = function (value) {
     this._target = value;
 };
 
@@ -545,13 +676,13 @@ fpb.prototype.value = function () {
     return this._target;
 };
 
-fpb.tap = (value, func) => {
+fpb.tap = function (value, func) {
     func(value);
     return value;
 };
 
-fpb.chain = (value, notLazy) => {
-    let instance = new fpb(value);
+fpb.chain = function (value, notLazy) {
+    var instance = new fpb(value);
     !notLazy && (instance._chunk = [value]);
     instance[notLazy ? '_isChain' : '_isLazyChain'] = true;
     return instance;
@@ -605,37 +736,43 @@ fpb.sortBy = __webpack_require__(47);
 fpb.unique = __webpack_require__(49);
 
 fpb.prototype.force = function () {
-    let chunks = this._chunk,
+    var chunks = this._chunk,
         target = this._target;
-    return fpb.reduce((target, thunk) => {
+    return fpb.reduce(function (target, thunk) {
         return thunk(target);
     }, chunks);
 };
 
-fpb.functions = obj => {
-    let names = [];
-    for (let key in obj) {
+fpb.functions = function (obj) {
+    var names = [];
+    for (var key in obj) {
         if (fpb.isFunction(obj[key])) names.push(key);
     }
     return names.sort();
 };
 
-fpb.log = v => {
+fpb.log = function (v) {
     console.log(v);
     return v;
 };
 
 fpb.mixin = function (obj) {
-    fpb.each(name => {
+    fpb.each(function (name) {
         //取得当前函数,并将其覆盖fpb上原有的同名函数
-        let func = fpb[name] = obj[name];
-        fpb.prototype[name] = function (...args) {
+        var func = fpb[name] = obj[name];
+        fpb.prototype[name] = function () {
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
             if (this._isLazyChain) {
-                this._chunk.push(target => func.apply(fpb, [target, ...args]));
+                this._chunk.push(function (target) {
+                    return func.apply(fpb, [target].concat(args));
+                });
                 return this;
             } else if (this._isChain) {
-                let target = this._target;
-                this._target = func.apply(fpb, [target, ...args]);
+                var target = this._target;
+                this._target = func.apply(fpb, [target].concat(args));
                 return this;
             } else {
                 return func.apply(fpb, args);
@@ -652,11 +789,13 @@ fpb.each(function (name) {
     }
 }, fpb.functions(fpb));
 
-fpb.VERSION = '1.1.4';
+fpb.VERSION = '1.1.6';
 
 /***/ }),
 /* 28 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
@@ -665,7 +804,7 @@ fpb.VERSION = '1.1.4';
  * @param {String or Number} value2
  */
 
-const add = (value1, value2) => {
+var add = function add(value1, value2) {
   return value1 + value2;
 };
 
@@ -675,13 +814,17 @@ module.exports = add;
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isObject = __webpack_require__(2);
+"use strict";
 
-const allKeys = value => {
+
+var isObject = __webpack_require__(2);
+
+var allKeys = function allKeys(value) {
     if (!isObject(value)) return [];
-    let keys = [];
-    for (var key in value) keys.push(key);
-    return keys;
+    var keys = [];
+    for (var key in value) {
+        keys.push(key);
+    }return keys;
 };
 
 module.exports = allKeys;
@@ -690,23 +833,39 @@ module.exports = allKeys;
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-const initial = __webpack_require__(14),
-      reduceRight = __webpack_require__(15);
+
+var initial = __webpack_require__(14),
+    reduceRight = __webpack_require__(15);
 
 /**
  * 
  * @param {Function} fns 
  */
-const compose = (...fns) => (...args) => {
-    return reduceRight((res, fn) => fn(res), fns[fns.length - 1].apply(null, args), initial(fns));
+var compose = function compose() {
+    for (var _len = arguments.length, fns = Array(_len), _key = 0; _key < _len; _key++) {
+        fns[_key] = arguments[_key];
+    }
+
+    return function () {
+        for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            args[_key2] = arguments[_key2];
+        }
+
+        return reduceRight(function (res, fn) {
+            return fn(res);
+        }, fns[fns.length - 1].apply(null, args), initial(fns));
+    };
 };
 
 module.exports = compose;
 
 /***/ }),
 /* 31 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
@@ -714,15 +873,23 @@ module.exports = compose;
  * @param {Function} func 
  */
 
-const curry = func => {
-    return function inner(..._args1) {
-        let len = func.length;
+var curry = function curry(func) {
+    return function inner() {
+        for (var _len = arguments.length, _args1 = Array(_len), _key = 0; _key < _len; _key++) {
+            _args1[_key] = arguments[_key];
+        }
+
+        var len = func.length;
         if (_args1.length === len) {
             return func.apply(null, _args1);
         } else if (_args1.length > len) {
             throw new Error('curried error length arguments');
         } else {
-            return function (..._args2) {
+            return function () {
+                for (var _len2 = arguments.length, _args2 = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                    _args2[_key2] = arguments[_key2];
+                }
+
                 return inner.apply(null, _args1.concat(_args2));
             };
         }
@@ -735,17 +902,20 @@ module.exports = curry;
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isFunction = __webpack_require__(1);
-const isArray = __webpack_require__(0);
-const isObject = __webpack_require__(2);
-const has = __webpack_require__(11);
+"use strict";
+
+
+var isFunction = __webpack_require__(1);
+var isArray = __webpack_require__(0);
+var isObject = __webpack_require__(2);
+var has = __webpack_require__(11);
 
 /**
  * 
  * @param {Function } predicate 
  * @param {Object} value 
  */
-const every = (predicate, value) => {
+var every = function every(predicate, value) {
     if (!isFunction(predicate)) throw new TypeError();
     if (isArray(value)) return Array.prototype.every.call(value, predicate);
     if (isObject(value) && !isFunction(value)) {
@@ -764,17 +934,19 @@ module.exports = every;
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-const each = __webpack_require__(19);
+
+var each = __webpack_require__(19);
 
 /**
  * 
  * @param {Function} iteratee 
  * @param {List} value 
  */
-const filter = (iteratee, value) => {
-    let rst = [];
-    each((value, index, list) => {
+var filter = function filter(iteratee, value) {
+    var rst = [];
+    each(function (value, index, list) {
         if (iteratee(value, index, list)) rst.push(value);
     }, value);
     return rst;
@@ -786,9 +958,12 @@ module.exports = filter;
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArrayLike = __webpack_require__(5);
+"use strict";
 
-const first = value => {
+
+var isArrayLike = __webpack_require__(5);
+
+var first = function first(value) {
     if (!isArrayLike(value)) return void 0;
     return value[0];
 };
@@ -799,13 +974,18 @@ module.exports = first;
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(4);
+"use strict";
+
+
+var getBaseType = __webpack_require__(4);
 
 /**
  * 
  * @param {Object} value 
  */
-const isBoolean = value => value === true || value === false || getBaseType('Boolean')(value);
+var isBoolean = function isBoolean(value) {
+  return value === true || value === false || getBaseType('Boolean')(value);
+};
 
 module.exports = isBoolean;
 
@@ -813,13 +993,18 @@ module.exports = isBoolean;
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(4);
+"use strict";
+
+
+var getBaseType = __webpack_require__(4);
 
 /**
  * 
  * @param {Object} value 
  */
-const isDate = value => getBaseType('Date')(value);
+var isDate = function isDate(value) {
+  return getBaseType('Date')(value);
+};
 
 module.exports = isDate;
 
@@ -827,18 +1012,21 @@ module.exports = isDate;
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArray = __webpack_require__(0),
-      isString = __webpack_require__(9),
-      isArguments = __webpack_require__(22),
-      isArrayLike = __webpack_require__(5),
-      isNumber = __webpack_require__(10),
-      ownKeys = __webpack_require__(6);
+"use strict";
+
+
+var isArray = __webpack_require__(0),
+    isString = __webpack_require__(9),
+    isArguments = __webpack_require__(22),
+    isArrayLike = __webpack_require__(5),
+    isNumber = __webpack_require__(10),
+    ownKeys = __webpack_require__(6);
 
 /**
  * 
  * @param {Object} value 
  */
-const isEmpty = value => {
+var isEmpty = function isEmpty(value) {
     if (value == null || value === undefined) return true;
     if (isArrayLike(value) && (isArray(value) || isString(value) || isArguments(value))) return value.length === 0;
     if (isNumber(value)) return false;
@@ -851,25 +1039,34 @@ module.exports = isEmpty;
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(4);
+"use strict";
+
+
+var getBaseType = __webpack_require__(4);
 /**
  * 
  * @param {Object} value 
  */
-const isError = value => getBaseType('Error')(value);
+var isError = function isError(value) {
+  return getBaseType('Error')(value);
+};
 
 module.exports = isError;
 
 /***/ }),
 /* 39 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
  * 
  * @param {Object} value 
  */
-const _isFinite = value => isFinite(value) && !isNaN(parseFloat(value));
+var _isFinite = function _isFinite(value) {
+  return isFinite(value) && !isNaN(parseFloat(value));
+};
 
 module.exports = _isFinite;
 
@@ -877,24 +1074,34 @@ module.exports = _isFinite;
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isNumber = __webpack_require__(10);
+"use strict";
+
+
+var isNumber = __webpack_require__(10);
 /**
  * 
  * @param {Object} value 
  */
-const isNaN = value => isNumber(value) && value !== +value;
+var isNaN = function isNaN(value) {
+  return isNumber(value) && value !== +value;
+};
 
 module.exports = isNaN;
 
 /***/ }),
 /* 41 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /**
  * 
  * @param {Object} value 
  */
-const isNull = value => value === null;
+var isNull = function isNull(value) {
+  return value === null;
+};
 
 module.exports = isNull;
 
@@ -902,51 +1109,68 @@ module.exports = isNull;
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const getBaseType = __webpack_require__(4);
+"use strict";
+
+
+var getBaseType = __webpack_require__(4);
 
 /**
  * 
  * @param {Object} value 
  */
-const isRegExp = value => getBaseType('RegExp')(value);
+var isRegExp = function isRegExp(value) {
+  return getBaseType('RegExp')(value);
+};
 
 module.exports = isRegExp;
 
 /***/ }),
 /* 43 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-const ArrayProto = Array.prototype;
-const slice = ArrayProto.slice;
+"use strict";
 
-const rest = value => slice.call(value, 1);
+
+var ArrayProto = Array.prototype;
+var slice = ArrayProto.slice;
+
+var rest = function rest(value) {
+  return slice.call(value, 1);
+};
 
 /***/ }),
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-const reduce = __webpack_require__(25);
-const isArray = __webpack_require__(0);
+
+var reduce = __webpack_require__(25);
+var isArray = __webpack_require__(0);
 
 /**
  * 
  * @param {Array} list 
  */
-const sum = list => {
+var sum = function sum(list) {
   if (!isArray(list)) throw new TypeError();
-  return reduce((pre, curr) => pre + curr, list);
+  return reduce(function (pre, curr) {
+    return pre + curr;
+  }, list);
 };
 
 module.exports = sum;
 
 /***/ }),
 /* 45 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
-
-const values = obj => Object.values(obj);
+var values = function values(obj) {
+  return Object.values(obj);
+};
 
 module.exports = values;
 
@@ -954,19 +1178,22 @@ module.exports = values;
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isArrayLike = __webpack_require__(5),
-      ownKeys = __webpack_require__(6);
+"use strict";
+
+
+var isArrayLike = __webpack_require__(5),
+    ownKeys = __webpack_require__(6);
 
 /**
  * 
  * @param {function} predicate  // (value, key||index, data) => fn
  * @param {array or object} obj 
  */
-const some = (predicate, obj) => {
-    let keys = !isArrayLike(obj) && ownKeys(obj),
+var some = function some(predicate, obj) {
+    var keys = !isArrayLike(obj) && ownKeys(obj),
         length = (keys || obj).length;
-    for (let i = 0; i < length; i++) {
-        let currentKey = keys ? keys[i] : i;
+    for (var i = 0; i < length; i++) {
+        var currentKey = keys ? keys[i] : i;
         if (predicate(obj[currentKey], currentKey, obj)) return true;
     }
     return false;
@@ -978,30 +1205,35 @@ module.exports = some;
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const pluck = __webpack_require__(26),
-      map = __webpack_require__(12),
-      createCb = __webpack_require__(48);
+"use strict";
+
+
+var pluck = __webpack_require__(26),
+    map = __webpack_require__(12),
+    createCb = __webpack_require__(48);
 
 /**
  * 
  * @param {function } iteratee 
  * @param {list} obj 
  */
-const sortBy = (iteratee, obj) => pluck('value', map((value, index, list) => {
-    return {
-        value: value,
-        index: index,
-        criteria: createCb(iteratee)(value, index, list)
-    };
-}, obj).sort((left, right) => {
-    var a = left.criteria;
-    var b = right.criteria;
-    if (a !== b) {
-        if (a > b || a === void 0) return 1;
-        if (a < b || b === void 0) return -1;
-    }
-    return left.index - right.index;
-}));
+var sortBy = function sortBy(iteratee, obj) {
+    return pluck('value', map(function (value, index, list) {
+        return {
+            value: value,
+            index: index,
+            criteria: createCb(iteratee)(value, index, list)
+        };
+    }, obj).sort(function (left, right) {
+        var a = left.criteria;
+        var b = right.criteria;
+        if (a !== b) {
+            if (a > b || a === void 0) return 1;
+            if (a < b || b === void 0) return -1;
+        }
+        return left.index - right.index;
+    }));
+};
 
 module.exports = sortBy;
 
@@ -1009,17 +1241,20 @@ module.exports = sortBy;
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isFunction = __webpack_require__(1),
-      isObject = __webpack_require__(2),
-      getProperty = __webpack_require__(8),
-      isString = __webpack_require__(9),
-      identity = __webpack_require__(21);
+"use strict";
+
+
+var isFunction = __webpack_require__(1),
+    isObject = __webpack_require__(2),
+    getProperty = __webpack_require__(8),
+    isString = __webpack_require__(9),
+    identity = __webpack_require__(21);
 
 /**
  * 
  * @param {*} value 
  */
-const createCb = value => {
+var createCb = function createCb(value) {
     if (value == null) return identity;
     if (isFunction(value)) return value;
     if (isString(value)) return getProperty(value);
@@ -1032,25 +1267,30 @@ module.exports = createCb;
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isNumber = __webpack_require__(10),
-      isArray = __webpack_require__(0),
-      isString = __webpack_require__(9),
-      isUndefinded = __webpack_require__(23),
-      isArrayLike = __webpack_require__(5),
-      getLength = __webpack_require__(3),
-      hasKey = __webpack_require__(11),
-      isFunction = __webpack_require__(1);
+"use strict";
+
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var isNumber = __webpack_require__(10),
+    isArray = __webpack_require__(0),
+    isString = __webpack_require__(9),
+    isUndefinded = __webpack_require__(23),
+    isArrayLike = __webpack_require__(5),
+    getLength = __webpack_require__(3),
+    hasKey = __webpack_require__(11),
+    isFunction = __webpack_require__(1);
 
 /**
  * 
  * @param {Array} array  一维数组 
  */
 
-const unique = array => {
+var unique = function unique(array) {
     if (isUndefinded(array)) throw new Error('argument should not be undefined');
     if (!isArrayLike(array)) throw new Error('argument should not be array or arrayLike');
     if (getLength(array) === 0) return [];
-    return [...new Set(array)];
+    return [].concat(_toConsumableArray(new Set(array)));
 };
 
 module.exports = unique;

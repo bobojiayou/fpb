@@ -13,7 +13,7 @@ npm install fpb
 ```
 
 ## Use && Feature
-### -  1、Function first 
+### 1、Function first 
 >     funtion is the first argument 
     
 e.g    
@@ -21,7 +21,7 @@ e.g
    fpb.filter(x=> x<3, [2,3,4])  //==> [2]
    fpb.map(x=> x*2, [2,3,4])  //==> [4, 6, 8]
 ```
-### -  2、Everything is auto curried
+### 2、Everything is auto curried
 >  fpb.js providing A lot of functions, and Most of them are auto curried , except 'chain', 'reduce', 'reduceRight', 'curry'
 
 e.g   
@@ -37,7 +37,7 @@ e.g
    addN()(1)(2)()(3) //==> 6
    addN(1, 2)(3) // ==> 6
 ```
-### -  3、compose
+### 3、compose
 >  you can compose funtions easily. see a huge example
 -  
 e.g   
@@ -59,7 +59,7 @@ e.g
   let composeFn = compose(add10, sum, filterBigThan2, values)
   composeFn(obj) //==> 17
 ```
-### -  4、chainAble (lazy chain)
+### 4、chainAble (lazy chain)
 > the functions in fpb.js also support chain calls, you can also code in OOP style if you like，and all the functions is lazy call, they would not execute until the force functions executed
 e.g   
 ```
